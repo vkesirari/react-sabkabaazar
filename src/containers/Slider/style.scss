@@ -1,0 +1,19 @@
+/* Slideshow container */
+.slideshow-container {
+  /* max-width: 1000px; */
+  position: relative;
+  margin: auto;
+  box-shadow: 0 8px 8px -8px #a1887f;
+  padding: 5px;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+.slider-img {
+  width: 100%;
+}

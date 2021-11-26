@@ -1,19 +1,22 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./style.scss";
-import categoryNamesData from "../../store/server/categories/index.get.json";
-
-const CategoryNames = () => {
-  const categorySelected = (item) => {
-    alert("clicked" + "---" + item.id);
-    console.log(item);
+const CategoryNames = ({ categoryNamesData, handleCategorySelected }) => {
+  const categorySelected = (item, e) => {
+    e.stopPropagation();
+    handleCategorySelected(item);
   };
+
   return (
     <ul id="category-items" classNameName="category-items">
-      {categoryNamesData.map((item) => (
-        <li className="products-lists" onClick={() => categorySelected(item)}>
-          {item.name}
-        </li>
-      ))}
+      {categoryNamesData &&
+        categoryNamesData.map((item) => (
+          <li
+            className="products-lists"
+            onClick={(e) => categorySelected(item, e)}
+          >
+            {item.name}
+          </li>
+        ))}
     </ul>
   );
 };

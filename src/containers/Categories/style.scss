@@ -107,14 +107,19 @@ img {
   padding: 5px;
   box-shadow: 0 8px 8px -8px #a1887f;
 }
-.home-img img {
-  width: 300px;
+// .home-img img {
+//   width: 300px;
+// }
+.odd-home-img {
+  grid-row: 1/-1;
+  grid-column: 2/-1;
 }
 .img-container-details h3,
 .para-des,
 button {
   margin-bottom: 15px;
 }
+
 @-webkit-keyframes fade {
   from {
     opacity: 0.4;

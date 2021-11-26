@@ -1,16 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-
-import PropTypes from "prop-types";
 import "./style.scss";
 import { ReactComponent as Logo } from "../../assests/images/cart.svg";
 import logoImg from "../../assests/images/logo.png";
-import CartModel from "../../containers/Model/CartModel";
-const Header = (props) => {
-  const openPage = () => {
-    // <CartModel />;
-    alert("hello");
+import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
+import { handleCartModel } from "../../redux/actions/cart";
+const Header = ({ cartData }) => {
+  const dispatch = useDispatch();
+  const [modelCurrentState, setModelCurrentState] = useState(false);
+  const [cartTotalCount, setCartTotalCount] = useState();
+  useEffect(() => {
+    setCartTotalCount(cartData.data);
+  }, [cartData.data]);
+  const openPage = (toggleVal, e) => {
+    e.stopPropagation();
+    setModelCurrentState(!toggleVal);
+    dispatch(handleCartModel(toggleVal));
   };
+
   return (
     <>
       <header className="header-section content-center">
@@ -26,7 +34,7 @@ const Header = (props) => {
           <div>
             <img
               className="logoApp"
-              width="100px"
+              width="125px"
               src={`${logoImg}`}
               alt="Shopping logo sabka bazar"
             />
@@ -40,11 +48,19 @@ const Header = (props) => {
                 Products
               </Link>
             </div>
-            <div className="cart-section" onClick={() => openPage()}>
+            <div
+              className="cart-section"
+              onClick={(e) => openPage(modelCurrentState, e)}
+            >
               <span>
                 <Logo />
               </span>
-              <p id="cart-value-update">0 items</p>
+              <p id="cart-value-update">
+                {typeof cartTotalCount == "undefined"
+                  ? 0
+                  : cartTotalCount.data.length}
+                &nbsp;items
+              </p>
             </div>
           </div>
         </menu>
@@ -55,5 +71,10 @@ const Header = (props) => {
 };
 
 Header.propTypes = {};
+const mapStateToProps = (state) => {
+  return {
+    cartData: state.product.cartDat,
+  };
+};
 
-export default Header;
+export default connect(mapStateToProps)(Header);

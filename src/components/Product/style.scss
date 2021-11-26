@@ -112,6 +112,13 @@
 .product-detail {
   /* border: 1px solid seagreen; */
 }
+.product-detail:hover {
+  /* border: 1px solid seagreen; */
+  top: -2px;
+  box-shadow: 0px 5px 10px 0px seagreen;
+  border-radius: 5px;
+}
+
 .footer-section {
   background-color: #e9ecef;
   /* background-color: tomato; */
@@ -188,6 +195,17 @@
 /* Style the active class, and buttons on mouse-over */
 li.active {
   background-color: red;
+}
+
+.model-cart-container {
+  border: 2px solid #bf2957;
+  position: absolute;
+  width: inherit;
+  z-index: 99999;
+  background-color: white;
+}
+.model-cart-container-hidden {
+  display: none;
 }
 
 @media only screen and (max-width: 768px) {
